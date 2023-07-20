@@ -8,9 +8,13 @@ namespace SimpleInv
 {
     public class Inventory : IInventory
     {
+        private List<Product> products;
+        public Inventory() {
+            products = new List<Product>();
+        }
         public void AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            products.Add(product);
         }
 
         public void RemoveProduct(Product product)

@@ -14,7 +14,7 @@ namespace SimpleInv
         {
             inventory = new Inventory();
             bool exit = false;
-            IInvoker invoker = new Invoker();
+            IInvoker invoker = new Invoker(inventory);
 
             while (!exit)
             {

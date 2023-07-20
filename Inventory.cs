@@ -30,7 +30,7 @@ namespace SimpleInv
 
         public List<Product> Retrieve()
         {
-            throw new NotImplementedException();
+            return products;
         }
 
         public void UpdateProduct(Product product, string newName, decimal newPrice, decimal newQuantity)

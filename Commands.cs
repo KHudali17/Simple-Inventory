@@ -72,4 +72,34 @@ namespace SimpleInv
             }
         }
     }
+
+    public class RetrieveAllCommand : ICommand
+    { 
+        private readonly IInventory inventory;
+
+        public RetrieveAllCommand(IInventory inventory)
+        {
+            this.inventory = inventory;
+        }
+
+        public void Execute()
+        {
+            Console.WriteLine("View all products");
+
+            List<Product> products = inventory.Retrieve();
+
+            if(products.Count == 0)
+            {
+                Console.WriteLine("Inventory is Empty.");
+            }
+            else
+            {
+                foreach(Product product in products)
+                {
+                    Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}");
+                }
+            }
+
+        }
+    }
 }

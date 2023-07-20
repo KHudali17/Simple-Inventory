@@ -28,6 +28,7 @@
             commands = new Dictionary<int, ICommand>
             {
                 { 1, new AddProductCommand(inventory) },
+                { 2, new UpdateProductCommand(inventory) },
                 { 3, new RemoveProductCommand(inventory) },
                 { 4, new RetrieveByNameCommand(inventory) },
                 { 5, new RetrieveAllCommand(inventory) }

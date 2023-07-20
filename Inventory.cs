@@ -35,7 +35,9 @@ namespace SimpleInv
 
         public void UpdateProduct(Product product, string newName, decimal newPrice, decimal newQuantity)
         {
-            throw new NotImplementedException();
+            product.Name = newName;
+            product.Price = newPrice;
+            product.Quantity = newQuantity;
         }
     }
 }

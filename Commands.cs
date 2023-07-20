@@ -41,4 +41,35 @@ namespace SimpleInv
             Console.WriteLine("Product added successfully");
         }
     }
+
+    public class RetrieveByNameCommand : ICommand
+    {
+        private readonly IInventory inventory;
+
+        public RetrieveByNameCommand(IInventory inventory)
+        {
+            this.inventory = inventory;
+        }
+
+        public void Execute()
+        {
+            //Prompt user for product name
+            Console.WriteLine("Search for a product");
+
+            Console.WriteLine("Enter product name: ");
+            string name = Console.ReadLine();
+
+            //Search for product, provide feedback
+            Product product = inventory.Retrieve(name);
+
+            if(product == null)
+            {
+                Console.WriteLine("Product not found.");
+            }
+            else
+            {
+                Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}.");
+            }
+        }
+    }
 }

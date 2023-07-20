@@ -27,7 +27,8 @@
         {
             commands = new Dictionary<int, ICommand>
             {
-                { 1, new AddProductCommand(inventory) }
+                { 1, new AddProductCommand(inventory) },
+                { 4, new RetrieveByNameCommand(inventory) }
             };
         }
     }

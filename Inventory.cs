@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace SimpleInv
 {
@@ -24,7 +25,7 @@ namespace SimpleInv
 
         public Product Retrieve(string productName)
         {
-            throw new NotImplementedException();
+            return products.Find(x => x.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
         }
 
         public List<Product> Retrieve()

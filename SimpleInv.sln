@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleInv", "SimpleInv.csproj", "{080AD32E-DFB8-4374-B37C-A5425FDD4782}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{080AD32E-DFB8-4374-B37C-A5425FDD4782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{080AD32E-DFB8-4374-B37C-A5425FDD4782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{080AD32E-DFB8-4374-B37C-A5425FDD4782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{080AD32E-DFB8-4374-B37C-A5425FDD4782}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F95CBE50-AFA1-4C58-A91B-3BDE565152F1}
+	EndGlobalSection
+EndGlobal

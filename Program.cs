@@ -37,11 +37,6 @@ namespace SimpleInv
                 {
                     exit = true;
                     continue;
-                }else if (choice > 6 || choice < 1) 
-                {
-                    Console.WriteLine("Invalid Choice");
-                    Console.WriteLine();
-                    continue;
                 }
 
                 invoker.Invoke(choice);

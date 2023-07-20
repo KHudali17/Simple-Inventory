@@ -86,8 +86,10 @@ namespace SimpleInv
         {
             Console.WriteLine("View all products");
 
+            //Retrieve product list
             List<Product> products = inventory.Retrieve();
 
+            //Print list if not empty
             if(products.Count == 0)
             {
                 Console.WriteLine("Inventory is Empty.");
@@ -100,6 +102,37 @@ namespace SimpleInv
                 }
             }
 
+        }
+    }
+
+    public class RemoveProductCommand : ICommand
+    {
+        private readonly IInventory inventory;
+
+        public RemoveProductCommand(IInventory inventory)
+        {
+            this.inventory = inventory;
+        }
+
+        public void Execute()
+        {
+            //Prompt user for product name
+            Console.WriteLine("Remove a product");
+
+            Console.WriteLine("Enter product name to be deleted: ");
+            string name = Console.ReadLine();
+
+            Product product = inventory.Retrieve(name);
+            
+            if(product == null)
+            {
+                Console.WriteLine("Product not found.");
+            }
+            else
+            {
+                inventory.RemoveProduct(product);
+                Console.WriteLine($"Product {product.Name} has been removed successfully.");
+            }
         }
     }
 }

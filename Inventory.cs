@@ -20,7 +20,7 @@ namespace SimpleInv
 
         public void RemoveProduct(Product product)
         {
-            throw new NotImplementedException();
+            products.Remove(product);
         }
 
         public Product Retrieve(string productName)

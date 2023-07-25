@@ -26,12 +26,13 @@ namespace SimpleInv
 
         public Product Retrieve(string productName)
         {
-            return _products.Find(x => x.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
+            var found =  _products.Find(x => x.Name.Equals(productName, StringComparison.OrdinalIgnoreCase)) ?? throw new ProductNotFoundException("Product not found.");
+            return found;
         }
 
         public List<Product> Retrieve()
         {
-            return _products;
+            return _products.Any() ? _products: throw new ProductNotFoundException("Inventory is Empty.");
         }
 
         public void UpdateProduct(Product product, string newName, decimal newPrice, decimal newQuantity)

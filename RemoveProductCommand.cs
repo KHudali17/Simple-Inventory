@@ -22,17 +22,16 @@ namespace SimpleInv
 
             Console.WriteLine("Enter product name to be deleted: ");
             string name = Console.ReadLine();
-
-            Product product = _inventory.Retrieve(name);
-
-            if (product == null)
+            
+            //Attempt to remove product, provide feedback
+            try
             {
-                Console.WriteLine("Product not found.");
-            }
-            else
-            {
+                Product product = _inventory.Retrieve(name);
                 _inventory.RemoveProduct(product);
                 Console.WriteLine($"Product {product.Name} has been removed successfully.");
+            }catch (ProductNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }

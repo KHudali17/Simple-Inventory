@@ -24,16 +24,16 @@ namespace SimpleInv
             string name = Console.ReadLine();
 
             //Search for product, provide feedback
-            Product product = _inventory.Retrieve(name);
-
-            if (product == null)
+            try
             {
-                Console.WriteLine("Product not found.");
-            }
-            else
-            {
+                Product product = _inventory.Retrieve(name);
                 Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}.");
             }
+            catch (ProductNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
     }
 }

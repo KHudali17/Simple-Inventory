@@ -22,16 +22,12 @@ namespace SimpleInv
 
             Console.WriteLine("Enter product name to be edited: ");
             string name = Console.ReadLine();
-
-            Product product = _inventory.Retrieve(name);
-
-            //Retrieve product, if it exists prompt user further to update.
-            if (product == null)
+            
+            //Retrieve product, if it exists prompt user further to update
+            try
             {
-                Console.WriteLine("Product not found.");
-            }
-            else
-            {
+                Product product = _inventory.Retrieve(name);
+
                 //Show current product details
                 Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}");
 
@@ -54,6 +50,11 @@ namespace SimpleInv
                 Console.WriteLine("Product updated successfully");
                 //Show new product details
                 Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}");
+
+            }
+            catch (ProductNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }

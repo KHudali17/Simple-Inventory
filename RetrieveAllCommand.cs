@@ -19,19 +19,17 @@ namespace SimpleInv
         {
             Console.WriteLine("View all products");
 
-            //Retrieve product list
-            List<Product> products = _inventory.Retrieve();
-
-            //Print list if not empty
-            if (products.Count == 0)
+            //Retrieve product list and print
+            try
             {
-                Console.WriteLine("Inventory is Empty.");
-                return;
-            }
-
-            foreach (Product product in products)
+                List<Product> products = _inventory.Retrieve();
+                foreach (Product product in products)
+                {
+                    Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}");
+                }
+            }catch (ProductNotFoundException ex)
             {
-                Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}");
+                Console.WriteLine(ex.Message);
             }
         }
     }

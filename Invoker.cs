@@ -2,14 +2,15 @@
 {
     internal class Invoker : IInvoker
     {
-        private readonly Dictionary<int, ICommand> commands;
+        private readonly Dictionary<int, ICommand> _commands;
+
         /// <summary>
         /// Retrieve command associated with choice and attempt to execute.
         /// </summary>
         /// <param name="choice"></param>
         public void Invoke(int choice)
         {
-            if (commands.TryGetValue(choice, out ICommand command))
+            if (_commands.TryGetValue(choice, out ICommand command))
             {
                 command.Execute();
             }
@@ -18,6 +19,7 @@
                 Console.WriteLine("Invalid choice. Please try again.");
             }
         }
+
         /// <summary>
         /// Define a mapping between a chioce option and its relevant 
         /// executable command.
@@ -25,7 +27,7 @@
         /// <param name="inventory"></param>
         public Invoker(IInventory inventory)
         {
-            commands = new Dictionary<int, ICommand>
+            _commands = new Dictionary<int, ICommand>
             {
                 { 1, new AddProductCommand(inventory) },
                 { 2, new UpdateProductCommand(inventory) },

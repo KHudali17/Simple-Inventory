@@ -9,28 +9,29 @@ namespace SimpleInv
 {
     public class Inventory : IInventory
     {
-        private List<Product> products;
+        private List<Product> _products;
+
         public Inventory() {
-            products = new List<Product>();
+            _products = new List<Product>();
         }
         public void AddProduct(Product product)
         {
-            products.Add(product);
+            _products.Add(product);
         }
 
         public void RemoveProduct(Product product)
         {
-            products.Remove(product);
+            _products.Remove(product);
         }
 
         public Product Retrieve(string productName)
         {
-            return products.Find(x => x.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
+            return _products.Find(x => x.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
         }
 
         public List<Product> Retrieve()
         {
-            return products;
+            return _products;
         }
 
         public void UpdateProduct(Product product, string newName, decimal newPrice, decimal newQuantity)

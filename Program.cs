@@ -8,13 +8,13 @@ namespace SimpleInv
 {
     public class Program
     {
-        private static IInventory inventory;
+        private static IInventory _inventory;
 
         static void Main(string[] args)
         {
-            inventory = new Inventory();
+            _inventory = new Inventory();
             bool exit = false;
-            IInvoker invoker = new Invoker(inventory);
+            IInvoker invoker = new Invoker(_inventory);
 
             while (!exit)
             {

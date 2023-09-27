@@ -6,7 +6,7 @@ public interface IInventory
 
     void RemoveProduct(Product product);
 
-    void UpdateProduct(Product product, string newName, decimal newPrice, decimal newQuantity);
+    void UpdateProduct(Product oldproduct, Product newProduct);
 
     Product Retrieve(string productName);
 

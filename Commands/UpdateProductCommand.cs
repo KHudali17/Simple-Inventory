@@ -29,19 +29,26 @@ public class UpdateProductCommand : ICommand
 
             //start prompting for new details (give option to keep old).
             Console.WriteLine("Enter new product name (return to skip)");
-            string newName0 = Console.ReadLine();
+            string? newName0 = Console.ReadLine();
             string newName = string.IsNullOrEmpty(newName0) ? product.Name : newName0;
 
             Console.WriteLine("Enter new product price (return to skip)");
-            string newPrice0 = Console.ReadLine();
+            string? newPrice0 = Console.ReadLine();
             decimal newPrice = string.IsNullOrEmpty(newPrice0) ? product.Price : decimal.Parse(newPrice0);
 
             Console.WriteLine("Enter new product quantity (return to skip)");
-            string newQuant0 = Console.ReadLine();
+            string? newQuant0 = Console.ReadLine();
             decimal newQuant = string.IsNullOrEmpty(newQuant0) ? product.Quantity : decimal.Parse(newQuant0);
 
             //Apply user's wishes, provide feedback
-            _inventory.UpdateProduct(product, newName, newPrice, newQuant);
+            var updatedProduct = new Product()
+            { 
+                Name = newName, 
+                Price = newPrice, 
+                Quantity = newQuant
+            };
+
+            _inventory.UpdateProduct(product, updatedProduct);
 
             Console.WriteLine("Product updated successfully");
             //Show new product details

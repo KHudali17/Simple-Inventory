@@ -26,7 +26,7 @@ public class AddProductCommand : ICommand
         decimal quantity = decimal.Parse(Console.ReadLine());
 
         //Instantiate and add product to inventory, provide feedback.
-        Product newProd = new Product
+        Product newProd = new()
         {
             Name = name,
             Price = price,

@@ -2,7 +2,7 @@
 
 public class Inventory : IInventory
 {
-    private List<Product> _products;
+    private readonly List<Product> _products;
 
     public Inventory()
     {
@@ -29,10 +29,10 @@ public class Inventory : IInventory
         return _products.Any() ? _products : throw new ProductNotFoundException("Inventory is Empty.");
     }
 
-    public void UpdateProduct(Product product, string newName, decimal newPrice, decimal newQuantity)
+    public void UpdateProduct(Product oldProduct, Product newProduct)
     {
-        product.Name = newName;
-        product.Price = newPrice;
-        product.Quantity = newQuantity;
+        oldProduct.Name = newProduct.Name;
+        oldProduct.Price = newProduct.Price;
+        oldProduct.Quantity = newProduct.Quantity;
     }
 }

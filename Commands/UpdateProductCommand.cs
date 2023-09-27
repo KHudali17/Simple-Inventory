@@ -11,7 +11,7 @@ public class UpdateProductCommand : ICommand
         _inventory = inventory;
     }
 
-    public void Execute()
+    public async void Execute()
     {
         //Prompt user for product name
         Console.WriteLine("Edit a product");
@@ -22,7 +22,7 @@ public class UpdateProductCommand : ICommand
         //Retrieve product, if it exists prompt user further to update
         try
         {
-            Product product = _inventory.Retrieve(name);
+            Product product = await _inventory.Retrieve(name);
 
             //Show current product details
             Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}");

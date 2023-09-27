@@ -11,14 +11,14 @@ public class RetrieveAllCommand : ICommand
         _inventory = inventory;
     }
 
-    public void Execute()
+    public async void Execute()
     {
         Console.WriteLine("View all products");
 
         //Retrieve product list and print
         try
         {
-            List<Product> products = _inventory.Retrieve();
+            List<Product> products = await _inventory.Retrieve();
             foreach (Product product in products)
             {
                 Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}");

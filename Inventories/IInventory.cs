@@ -2,13 +2,13 @@
 
 public interface IInventory
 {
-    void AddProduct(Product product);
+    Task AddProduct(Product product);
 
-    void RemoveProduct(Product product);
+    Task RemoveProduct(Product product);
 
-    void UpdateProduct(Product oldproduct, Product newProduct);
+    Task UpdateProduct(Product oldproduct, Product newProduct);
 
-    Product Retrieve(string productName);
+    Task<Product> Retrieve(string productName);
 
-    List<Product> Retrieve();
+    Task<List<Product>> Retrieve();
 }

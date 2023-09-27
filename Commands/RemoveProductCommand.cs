@@ -11,7 +11,7 @@ public class RemoveProductCommand : ICommand
         _inventory = inventory;
     }
 
-    public void Execute()
+    public async void Execute()
     {
         //Prompt user for product name
         Console.WriteLine("Remove a product");
@@ -22,8 +22,8 @@ public class RemoveProductCommand : ICommand
         //Attempt to remove product, provide feedback
         try
         {
-            Product product = _inventory.Retrieve(name);
-            _inventory.RemoveProduct(product);
+            Product product = await _inventory.Retrieve(name);
+            await _inventory.RemoveProduct(product);
             Console.WriteLine($"Product {product.Name} has been removed successfully.");
         }
         catch (ProductNotFoundException ex)

@@ -11,7 +11,7 @@ public class RetrieveByNameCommand : ICommand
         _inventory = inventory;
     }
 
-    public void Execute()
+    public async void Execute()
     {
         //Prompt user for product name
         Console.WriteLine("Search for a product");
@@ -22,7 +22,7 @@ public class RetrieveByNameCommand : ICommand
         //Search for product, provide feedback
         try
         {
-            Product product = _inventory.Retrieve(name);
+            Product product = await _inventory.Retrieve(name);
             Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}.");
         }
         catch (ProductNotFoundException ex)

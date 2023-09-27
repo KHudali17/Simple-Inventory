@@ -8,13 +8,13 @@ namespace SimpleInv
 {
     public class Program
     {
-        private static IInventory inventory;
+        private static IInventory _inventory;
 
         static void Main(string[] args)
         {
-            inventory = new Inventory();
+            _inventory = new Inventory();
             bool exit = false;
-            IInvoker invoker = new Invoker();
+            IInvoker invoker = new Invoker(_inventory);
 
             while (!exit)
             {
@@ -36,11 +36,6 @@ namespace SimpleInv
                 if (choice == 6)
                 {
                     exit = true;
-                    continue;
-                }else if (choice > 6 || choice < 1) 
-                {
-                    Console.WriteLine("Invalid Choice");
-                    Console.WriteLine();
                     continue;
                 }
 

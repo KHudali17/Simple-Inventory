@@ -3,34 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace SimpleInv
 {
     public class Inventory : IInventory
     {
+        private List<Product> _products;
+
+        public Inventory() {
+            _products = new List<Product>();
+        }
         public void AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            _products.Add(product);
         }
 
         public void RemoveProduct(Product product)
         {
-            throw new NotImplementedException();
+            _products.Remove(product);
         }
 
         public Product Retrieve(string productName)
         {
-            throw new NotImplementedException();
+            var found =  _products.Find(x => x.Name.Equals(productName, StringComparison.OrdinalIgnoreCase)) ?? throw new ProductNotFoundException("Product not found.");
+            return found;
         }
 
         public List<Product> Retrieve()
         {
-            throw new NotImplementedException();
+            return _products.Any() ? _products: throw new ProductNotFoundException("Inventory is Empty.");
         }
 
         public void UpdateProduct(Product product, string newName, decimal newPrice, decimal newQuantity)
         {
-            throw new NotImplementedException();
+            product.Name = newName;
+            product.Price = newPrice;
+            product.Quantity = newQuantity;
         }
     }
 }

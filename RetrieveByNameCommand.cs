@@ -1,39 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace SimpleInv;
 
-namespace SimpleInv
+public class RetrieveByNameCommand : ICommand
 {
-    public class RetrieveByNameCommand : ICommand
+    private readonly IInventory _inventory;
+
+    public RetrieveByNameCommand(IInventory inventory)
     {
-        private readonly IInventory _inventory;
+        this._inventory = inventory;
+    }
 
-        public RetrieveByNameCommand(IInventory inventory)
+    public void Execute()
+    {
+        //Prompt user for product name
+        Console.WriteLine("Search for a product");
+
+        Console.WriteLine("Enter product name: ");
+        string name = Console.ReadLine();
+
+        //Search for product, provide feedback
+        try
         {
-            this._inventory = inventory;
+            Product product = _inventory.Retrieve(name);
+            Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}.");
+        }
+        catch (ProductNotFoundException ex)
+        {
+            Console.WriteLine(ex.Message);
         }
 
-        public void Execute()
-        {
-            //Prompt user for product name
-            Console.WriteLine("Search for a product");
-
-            Console.WriteLine("Enter product name: ");
-            string name = Console.ReadLine();
-
-            //Search for product, provide feedback
-            try
-            {
-                Product product = _inventory.Retrieve(name);
-                Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}.");
-            }
-            catch (ProductNotFoundException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            
-        }
     }
 }

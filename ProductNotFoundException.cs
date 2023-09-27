@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace SimpleInv;
 
-namespace SimpleInv
+public class ProductNotFoundException : Exception
 {
-    public class ProductNotFoundException : Exception
-    {
-        public ProductNotFoundException(string message): base(message) { }
-    }
+    public ProductNotFoundException(string message) : base(message) { }
 }

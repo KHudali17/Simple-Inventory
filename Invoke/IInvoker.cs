@@ -1,4 +1,4 @@
-﻿namespace SimpleInv;
+﻿namespace SimpleInv.Invoke;
 
 public interface IInvoker
 {

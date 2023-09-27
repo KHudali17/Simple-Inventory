@@ -1,4 +1,7 @@
-﻿namespace SimpleInv;
+﻿using SimpleInv.Inventories;
+using SimpleInv.Invoke;
+
+namespace SimpleInv;
 
 public class Program
 {

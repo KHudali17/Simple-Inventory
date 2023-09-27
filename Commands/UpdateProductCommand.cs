@@ -1,4 +1,6 @@
-﻿namespace SimpleInv;
+﻿using SimpleInv.Inventories;
+
+namespace SimpleInv.Commands;
 
 public class UpdateProductCommand : ICommand
 {
@@ -6,7 +8,7 @@ public class UpdateProductCommand : ICommand
 
     public UpdateProductCommand(IInventory inventory)
     {
-        this._inventory = inventory;
+        _inventory = inventory;
     }
 
     public void Execute()

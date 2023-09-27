@@ -1,4 +1,7 @@
-﻿namespace SimpleInv;
+﻿using SimpleInv.Commands;
+using SimpleInv.Inventories;
+
+namespace SimpleInv.Invoke;
 
 internal class Invoker : IInvoker
 {

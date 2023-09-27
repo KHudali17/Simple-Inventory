@@ -1,4 +1,4 @@
-﻿namespace SimpleInv;
+﻿namespace SimpleInv.Inventories;
 
 public class Inventory : IInventory
 {

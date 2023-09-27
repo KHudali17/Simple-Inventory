@@ -1,4 +1,6 @@
-﻿namespace SimpleInv;
+﻿using SimpleInv.Inventories;
+
+namespace SimpleInv.Commands;
 
 public class RetrieveAllCommand : ICommand
 {

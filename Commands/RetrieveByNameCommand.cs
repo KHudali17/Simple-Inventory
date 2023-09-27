@@ -1,4 +1,6 @@
-﻿namespace SimpleInv;
+﻿using SimpleInv.Inventories;
+
+namespace SimpleInv.Commands;
 
 public class RetrieveByNameCommand : ICommand
 {
@@ -6,7 +8,7 @@ public class RetrieveByNameCommand : ICommand
 
     public RetrieveByNameCommand(IInventory inventory)
     {
-        this._inventory = inventory;
+        _inventory = inventory;
     }
 
     public void Execute()

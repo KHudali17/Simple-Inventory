@@ -1,4 +1,4 @@
-﻿namespace SimpleInv;
+﻿namespace SimpleInv.Commands;
 
 public interface ICommand
 {

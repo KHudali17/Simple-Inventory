@@ -1,18 +1,28 @@
-﻿using SimpleInv.Inventories;
+﻿using Microsoft.Extensions.Configuration;
+using SimpleInv.Inventories;
 using SimpleInv.Invoke;
+using System.Data.SqlClient;
 
 namespace SimpleInv;
 
 public class Program
 {
-    private static IInventory _inventory;
-
     static void Main(string[] args)
     {
-        _inventory = new Inventory();
-        bool exit = false;
-        IInvoker invoker = new Invoker(_inventory);
+        IConfigurationRoot config = new ConfigurationBuilder()
+        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+        .AddJsonFile("appsettings.json")
+        .Build();
 
+        var connectionString = config.GetConnectionString("SQLServerConnection");
+
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        IInventory inventory = new InventorySQLServer(connection);
+  
+        IInvoker invoker = new Invoker(inventory);
+
+        bool exit = false;
         while (!exit)
         {
             //Present options to the user

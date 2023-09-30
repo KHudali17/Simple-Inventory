@@ -22,7 +22,7 @@ public class UpdateProductCommand : ICommand
         //Retrieve product, if it exists prompt user further to update
         try
         {
-            Product product = await _inventory.Retrieve(name);
+            Product product = _inventory.Retrieve(name).Result;
 
             //Show current product details
             Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}");
@@ -48,7 +48,7 @@ public class UpdateProductCommand : ICommand
                 Quantity = newQuant
             };
 
-            _inventory.UpdateProduct(product, updatedProduct);
+            await _inventory.UpdateProduct(product, updatedProduct);
 
             Console.WriteLine("Product updated successfully");
             //Show new product details

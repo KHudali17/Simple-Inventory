@@ -11,7 +11,7 @@ public class AddProductCommand : ICommand
         _inventory = inventory;
     }
 
-    public void Execute()
+    public async void Execute()
     {
         //Prompt user for product details
         Console.WriteLine("Add a product");
@@ -32,7 +32,7 @@ public class AddProductCommand : ICommand
             Price = price,
             Quantity = quantity
         };
-        _inventory.AddProduct(newProd);
+        await _inventory.AddProduct(newProd);
 
         Console.WriteLine("Product added successfully");
     }

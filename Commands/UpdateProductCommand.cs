@@ -52,7 +52,7 @@ public class UpdateProductCommand : ICommand
 
             Console.WriteLine("Product updated successfully");
             //Show new product details
-            Console.WriteLine($"Name: {product.Name}, Price: {product.Price}, Quantity: {product.Quantity}");
+            Console.WriteLine($"Name: {updatedProduct.Name}, Price: {updatedProduct.Price}, Quantity: {updatedProduct.Quantity}");
 
         }
         catch (ProductNotFoundException ex)

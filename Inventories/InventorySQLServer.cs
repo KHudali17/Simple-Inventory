@@ -1,5 +1,4 @@
-﻿using System.Data.Common;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 
 namespace SimpleInv.Inventories;
@@ -30,12 +29,8 @@ public class InventorySQLServer : IInventory
         {
             await insertCommand.ExecuteNonQueryAsync();
         }
-        catch (DbException)
-        {
-            Console.WriteLine("Database action failed.");
-        }
-
-        await _connection.CloseAsync();
+        catch { throw; }
+        finally { await _connection.CloseAsync(); }
     }
 
     public async Task RemoveProduct(Product product)
@@ -56,12 +51,8 @@ public class InventorySQLServer : IInventory
         {
             await deleteCommand.ExecuteNonQueryAsync();
         }
-        catch (DbException)
-        {
-            Console.WriteLine("Database action failed.");
-        }
-
-        await _connection.CloseAsync();
+        catch { throw; }
+        finally { await _connection.CloseAsync(); }
     }
 
     public async Task<Product> Retrieve(string productName)
@@ -89,16 +80,10 @@ public class InventorySQLServer : IInventory
                 Quantity = (decimal)reader["Quantity"]
             };
 
-            await _connection.CloseAsync();
             return product;
         }
-        catch (DbException)
-        {
-            Console.WriteLine("Database action failed.");
-
-            await _connection.CloseAsync();
-            return new Product();
-        }
+        catch { throw; }
+        finally { await _connection.CloseAsync(); }
     }
 
     public async Task<List<Product>> Retrieve()
@@ -127,12 +112,9 @@ public class InventorySQLServer : IInventory
                 products.Add(product);
             }
         }
-        catch (DbException)
-        {
-            Console.WriteLine("Database action failed."); 
-        }
+        catch { throw; }
+        finally { await _connection.CloseAsync(); }
 
-        await _connection.CloseAsync();
         return products;
     }
 
@@ -142,7 +124,7 @@ public class InventorySQLServer : IInventory
 
         using SqlCommand updateCommand = _connection.CreateCommand();
 
-        updateCommand.CommandText = 
+        updateCommand.CommandText =
             "UPDATE Products " +
             "SET Name = @NewName, Price = @NewPrice, Quantity = @NewQuantity " +
             "WHERE Name = @OldName AND Price = @OldPrice AND Quantity = @OldQuantity";
@@ -158,11 +140,8 @@ public class InventorySQLServer : IInventory
         {
             await updateCommand.ExecuteNonQueryAsync();
         }
-        catch (DbException)
-        {
-            Console.WriteLine("Database action failed.");
-        }
+        catch { throw; }
+        finally { await _connection.CloseAsync(); }
 
-        await _connection.CloseAsync();
     }
 }

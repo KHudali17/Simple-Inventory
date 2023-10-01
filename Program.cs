@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using SimpleInv.Inventories;
 using SimpleInv.Invoke;
-using System.Data.SqlClient;
-using MongoDB.Driver;
-using MongoDB.Bson;
 
 namespace SimpleInv;
 
@@ -16,31 +13,10 @@ public class Program
         .AddJsonFile("appsettings.json")
         .Build();
 
-        var connectionString = config.GetConnectionString("AtlasConnection");
+        var connection = Connection.EstablishWithAtlas(config, "Simple-Inventory");
 
-        var settings = MongoClientSettings.FromConnectionString(connectionString);
+        IInventory inventory = InventoryFactory.CreateInventory(connection);
 
-        // Set the ServerApi field of the settings object to Stable API version 1
-        settings.ServerApi = new ServerApi(ServerApiVersion.V1);
-
-        // Create a new client and connect to the server
-        var client = new MongoClient(settings);
-
-        // Send a ping to confirm a successful connection
-        try
-        {
-            var result = client.GetDatabase("admin").RunCommand<BsonDocument>(new BsonDocument("ping", 1));
-            Console.WriteLine("Pinged your deployment. You successfully connected to MongoDB!");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-            Environment.Exit(1);
-        }
-
-
-        IInventory inventory = new InventoryMongo(client.GetDatabase("Simple-Inventory"));
-  
         IInvoker invoker = new Invoker(inventory);
 
         bool exit = false;
